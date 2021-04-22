@@ -1,0 +1,123 @@
+package hust.soict.talented.lab06;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+class Order {
+	public static final int MAX_LIMITED_ORDERS = 5;
+	public static int nbOrders = 0;
+	private MyDate dateOrdered = new MyDate();
+	public static final int MAX_NUMBERS_ORDERED = 10;
+	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	public int nbMedias = 0;
+	
+	public Order() {
+		if (nbOrders == MAX_LIMITED_ORDERS) {
+			System.out.println("You can't add a order");
+		} else {
+			nbOrders += 1;
+		}
+	}
+	
+	public MyDate getDateOrdered() {
+		return dateOrdered;
+	}
+	public void setDateOrdered(MyDate dateOrdered) {
+		this.dateOrdered = dateOrdered;
+	}
+	
+	public void addMedia(Media med) {
+		if (itemsOrdered.size() == MAX_NUMBERS_ORDERED) {
+			System.out.println("The order is almost full");
+		} else {
+			itemsOrdered.add(med);
+			System.out.println("The media (" + med.getTitle() + ", "
+											+ med.getCategory() + ", "
+											+ med.getCost() + ") has been added");
+			nbMedias += 1;
+		}
+	}
+	
+	public void addMedia(Media[] medList) {
+		if (itemsOrdered.size() + medList.length > MAX_NUMBERS_ORDERED) {
+			System.out.println("The order is almost full if you added");
+		} else {
+			for (int i = 0; i < medList.length; i++) {
+				this.addMedia(medList[i]);
+			}
+			nbMedias += medList.length;
+		}
+	}
+	
+	public void addMedia(Media med1, Media med2) {
+		if (itemsOrdered.size() + 2 > MAX_NUMBERS_ORDERED) {
+			System.out.println("The order is almost full if you added");
+		} else {
+			this.addMedia(med1);
+			this.addMedia(med2);
+			nbMedias += 2;
+		}
+	}
+	
+	public void removeMedia(Media med) {
+		for (int i = 0; i < itemsOrdered.size(); i++) {
+			if (med.getCategory() == itemsOrdered.get(i).getCategory() &&
+					med.getTitle() == itemsOrdered.get(i).getTitle() &&
+					med.getCost() == itemsOrdered.get(i).getCost()) {
+				for (int j = i; j < itemsOrdered.size() - 1; j++) {
+					itemsOrdered.get(j).setCategory(itemsOrdered.get(j + 1).getCategory());
+					itemsOrdered.get(j).setTitle(itemsOrdered.get(j + 1).getTitle());
+					itemsOrdered.get(j).setCost(itemsOrdered.get(j + 1).getCost());
+				}
+				System.out.println("The media (" + med.getTitle() + ", "
+												+ med.getCategory() + ", "
+												+ med.getCost() + ") has been removed");
+				nbMedias -= 1;
+			} else {
+				System.out.println("There is no media suited this!");
+			}
+		}
+	}
+	
+	public void removeMedia(int idx) {
+		for (int j = idx; j < itemsOrdered.size() - 1; j++) {
+			itemsOrdered.get(j).setCategory(itemsOrdered.get(j + 1).getCategory());
+			itemsOrdered.get(j).setTitle(itemsOrdered.get(j + 1).getTitle());
+			itemsOrdered.get(j).setCost(itemsOrdered.get(j + 1).getCost());
+		}
+		System.out.println("The media (" + itemsOrdered.get(idx).getTitle() + ", "
+										+ itemsOrdered.get(idx).getCategory() + ", "
+										+ itemsOrdered.get(idx).getCost() + ") has been removed");
+		nbMedias -= 1;
+	}
+	
+	public float totalCost() {
+		float tCost = 0;
+		for (int i = 0; i < itemsOrdered.size(); i++) {
+			tCost += itemsOrdered.get(i).getCost();
+		}
+		return tCost;
+	}
+	
+	public void printOrder() {
+		System.out.println("***********************Order***********************");
+		System.out.println("Date: [" + this.dateOrdered.getDay() + " - " + this.dateOrdered.getMonth()+ " - " + this.getDateOrdered().getYear() + "]");
+		System.out.println("Ordered Items:");
+		for (int i = 0; i < itemsOrdered.size(); i++) {
+			System.out.println((i + 1) + ". DVD - [" + itemsOrdered.get(i).getTitle() + "] - ["
+													+ itemsOrdered.get(i).getCategory() + "] - ["
+													+ itemsOrdered.get(i).getCost() + "] $");
+		}
+		System.out.println("Total cost: [" + this.totalCost() + "]");
+		System.out.println("***************************************************");
+	}
+	
+	public void getALuckyItem() {
+		Random rand = new Random();
+		int i = rand.nextInt(itemsOrdered.size());
+		System.out.println("You get item " + (i + 1) + ". DVD - [" + itemsOrdered.get(i).getTitle() + "] - ["
+												+ itemsOrdered.get(i).getCategory() + "] - ["
+												+ itemsOrdered.get(i).getCost() + "] $" + " for free!");
+		this.itemsOrdered.get(i).setCost(0);
+	}
+}
