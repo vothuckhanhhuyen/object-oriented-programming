@@ -1,4 +1,4 @@
-package hust.soict.talented.lab07;
+package hust.soict.talented.lab08;
 
 class DigitalVideoDisc extends Disc implements Playable {
 	public DigitalVideoDisc() {

@@ -1,4 +1,4 @@
-package hust.soict.talented.lab07;
+package hust.soict.talented.lab08;
 
 public class Disc extends Media {
 	protected int length;
