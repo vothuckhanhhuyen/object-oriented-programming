@@ -9,19 +9,15 @@ public class Book extends Media {
 	public Book() {
 		
 	}
-	
 	public Book(String title) {
 		super(title);
 	}
-	
 	public Book(String title, String category) {
 		super(title, category);
 	}
-	
 	public Book(String title, String category, float cost) {
 		super(title, category, cost);
 	}
-	
 	public Book(String title, String category, ArrayList<String> authors) {
 		super(title, category);
 		this.authors = authors;

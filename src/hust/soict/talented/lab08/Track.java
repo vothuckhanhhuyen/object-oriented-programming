@@ -7,11 +7,9 @@ public class Track implements Playable {
 	public Track() {
 		
 	}
-	
 	public Track(String title) {
 		this.title = title;
 	}
-	
 	public Track(String title, int length) {
 		this(title);
 		this.length = length;
@@ -31,8 +29,24 @@ public class Track implements Playable {
 		this.length = length;
 	}
 	
+	@Override
 	public void play() {
 		System.out.println("Playing Track: " + this.getTitle());
 		System.out.println("Track length: " + this.getLength());
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Track)) {
+			return false;
+		}
+		else {
+			Track newTrack = (Track) obj;
+			if (newTrack.length == this.length && newTrack.title == this.title) {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	}
 }
