@@ -93,4 +93,21 @@ public class CompactDisc extends Disc implements Playable {
 			tracks.get(i).play();
 		}
 	}
+	
+	/**
+	 *
+	 */
+	@Override
+	public int compareTo(Object o) {
+		if (!(o instanceof CompactDisc)) {
+			return o.getClass().toString().compareTo(CompactDisc.class.toString());
+		} else {
+			CompactDisc item = (CompactDisc) o;
+			if (Integer.compare(this.tracks.size(), item.tracks.size()) != 0) {
+				return Integer.compare(this.tracks.size(), item.tracks.size());
+			} else {
+				return Integer.compare(this.getLength(), item.getLength());
+			}
+		}
+	}
 }

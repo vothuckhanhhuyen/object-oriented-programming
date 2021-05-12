@@ -1,6 +1,6 @@
 package hust.soict.talented.lab08.disc;
 
-public class Track implements Playable {
+public class Track implements Playable, Comparable<Object> {
 	private String title;
 	private int length;
 	
@@ -68,6 +68,19 @@ public class Track implements Playable {
 			} else {
 				return false;
 			}
+		}
+	}
+	
+	/**
+	 *
+	 */
+	@Override
+	public int compareTo(Object o) {
+		if (!(o instanceof Track)) {
+			return o.getClass().toString().compareTo(Track.class.toString());
+		} else {
+			Track item = (Track) o;
+			return Integer.compare(this.getLength(), item.getLength());
 		}
 	}
 }

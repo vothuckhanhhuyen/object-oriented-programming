@@ -1,6 +1,6 @@
 package hust.soict.talented.lab08.disc;
 
-public class Media {
+public class Media implements Comparable<Object> {
 	protected String title;
 	protected String category;	
 	protected float cost;
@@ -105,6 +105,20 @@ public class Media {
 			} else {
 				return false;
 			}
+		}
+	}
+	
+	/**
+	 * @param o
+	 * @return
+	 */
+	@Override
+	public int compareTo(Object o) {
+		if (!(o instanceof Media)) {
+			return o.getClass().toString().compareTo(Media.class.toString());
+		} else {
+			Media item = (Media) o;
+			return this.title.compareTo(item.title);
 		}
 	}
 }

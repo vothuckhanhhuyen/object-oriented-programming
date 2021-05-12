@@ -1,4 +1,4 @@
-package hust.soict.talented.lab08.utils;
+package hust.soict.talented.lab08.test.disc;
 
 import hust.soict.talented.lab08.disc.DigitalVideoDisc;
 
