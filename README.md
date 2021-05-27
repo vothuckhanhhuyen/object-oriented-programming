@@ -1,4 +1,4 @@
-# Object Oriented programming (OOP)
+# Object Oriented Programming (OOP)
 All document and labs in subject OOP
 
 1. [Slide](https://github.com/vothuckhanhhuyen/oop/tree/master/Document/lecture) represented in this subject
